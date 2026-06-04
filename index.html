@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>Etch-a-sketch</title>
+</head>
+<body>
+    <button class="reset">Reset</button>
+    <div class="controls">
+        <div>
+            <label for="nsquare">Number of squares: </label>
+            <input type="number" name="nsquare" id="nsquare" value="16" min="1" max="100">
+        </div>
+        <div>
+            <label for="random" id="randMod">Random</label>
+            <input type="radio" name="colorType" id="random" value="0">
+            <label for="gradient" id="gradMod">Gradient</label>
+            <input type="radio" name="colorType" id="gradient" value="1">
+        </div>
+    </div>
+    <div class="container">
+        <div class="square"></div>
+    </div>
+    <script src="./js/javaScript.js"></script>
+</body>
+</html>
