@@ -1,12 +1,24 @@
 let     container = document.querySelector(".container");
 let     nSquares = document.querySelector("#nsquare").value;
 let     reset = document.querySelector(".reset");
-// const   radios = document.querySelector(`input[type="radio"]`);
+let     random = document.querySelector("#random");
+let     grad   = document.querySelector("#gradient");
 let     mod = 0;
+const   radios = [random, grad];
 const     square = [];
 
 document.addEventListener("load", renderGrid());
 container.style.width = (100 / nSquares ) * nSquares;
+
+for ( let rad of radios )
+{
+    rad.addEventListener("change", ()=>{
+        if ( rad === radios[0] )
+            mod = 0;
+        else
+            mod = 1;
+    })
+}
 
 function    renderGrid()
 {
