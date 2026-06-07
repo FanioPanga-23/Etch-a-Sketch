@@ -16,3 +16,26 @@
     border-radius: 5px;
     background-color: #000;
 }
+
+button.reset {
+    margin: 12px 0 0 12px;
+    padding: 5px 8px;
+    color: #fff;
+    font-size: 1.1rem;
+    background-color: #ff0000;
+    border: none;
+    border-radius: 3px;
+    transition: ease-in-out .3s;
+}
+
+button.reset:hover
+{
+    cursor: pointer;
+    color: #000;
+    box-shadow: 4px 3px #000;
+}
+
+button.reset:active
+{
+    transform: scale(0.1);
+}

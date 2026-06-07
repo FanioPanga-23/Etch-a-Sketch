@@ -3,7 +3,7 @@ let     num = document.querySelector("#nsquare");
 let     reset = document.querySelector(".reset");
 let     random = document.querySelector("#random");
 let     grad   = document.querySelector("#gradient");
-let     nSquares = filterInput( +num.value ) ;
+let     nSquares = filterInput( parseInt(num.value) ) ;
 const   radios = [random, grad];
 const   square = [];
 let     mod = 0;
@@ -15,25 +15,10 @@ else
 
 renderGrid( nSquares );
 
-function    cleanGrid( len )
-{
-    for ( let i = 0; i < (len * len) ; i++ )
-        container.removeChild(square[i]);
-}
-
-function    filterInput( value )
-{
-    if ( value > 100 )
-        return ( 100 );
-    else if ( value < 0 )
-        return ( 1 );
-    return ( value );
-}
-
 num.addEventListener("change", ()=>{
-    let newValue = filterInput( +num.value );
-    cleanGrid( nSquares );
-    renderGrid( parseInt( newValue ) );
+    let newValue = filterInput( parseInt(num.value) );
+    clearGrid( nSquares );
+    renderGrid( newValue );
     nSquares = newValue;
 });
 
@@ -45,6 +30,50 @@ for ( let rad of radios )
         else
             mod = 1;
     })
+}
+
+reset.addEventListener("click", ()=>{
+    for ( squa of square )
+    {
+        squa.style.backgroundColor = "rgb(255, 255, 255)";
+        squa.style.opacity = 1;
+    }
+})
+
+container.addEventListener("mouseover", ()=>{
+    for ( let squa of square )
+    {
+        squa.addEventListener( "mouseover", ()=>{
+            if ( mod )
+                squa.style.opacity -= .001;
+            if ( mod === 0 )
+            {
+                squa.style.opacity = 1;
+                squa.style.backgroundColor = `rgb(${randomColor()}, ${randomColor()}, ${randomColor()})`;
+                squa.style.backgroundColor = `rgba(${opacit[0]}, ${opacit[1]}, ${opacit[2]}, ${opacit[3] -= .01})`;
+            }
+        });
+    }
+})
+
+function    filterInput( value )
+{
+    if ( value > 100 )
+        return ( 100 );
+    else if ( value < 0 )
+        return ( 1 );
+    return ( value );
+}
+
+function    randomColor()
+{
+    return ( Math.round(0 + Math.random() * 255) );
+}
+
+function    clearGrid( len )
+{
+    for ( let i = 0; i < (len * len) ; i++ )
+        container.removeChild(square[i]);
 }
 
 function    renderGrid( numSquars )
@@ -62,32 +91,3 @@ function    renderGrid( numSquars )
         container.appendChild(square[i]);
     }
 }
-
-reset.addEventListener("click", ()=>{
-    for ( squa of square )
-    {
-        squa.style.backgroundColor = "rgb(255, 255, 255)";
-        squa.style.opacity = 1;
-    }
-})
-
-function    randomColor()
-{
-    return ( Math.round(0 + Math.random() * 255) );
-}
-
-container.addEventListener("mouseover", ()=>{
-    for ( let squa of square )
-    {
-        squa.addEventListener( "mouseover", ()=>{
-            if ( mod )
-                squa.style.opacity -= .001;
-            if ( mod === 0 )
-            {
-                squa.style.opacity = 1;
-                squa.style.backgroundColor = `rgb(${randomColor()}, ${randomColor()}, ${randomColor()})`;
-                squa.style.backgroundColor = `rgba(${opacit[0]}, ${opacit[1]}, ${opacit[2]}, ${opacit[3] -= .01})`;
-            }
-        });
-    }
-})
